@@ -1,0 +1,28 @@
+
+
+Scenes
+
+A Scene is an Activity or group of activities that is currently available to the client.
+In a visual Application it represents a screen, page, etc. It is offers the user
+some funtionality and/or a group of actions that a user might performs. They differ
+from activities in that an Activity is like a user story, a group of tasks to accomplish
+a specific goal. Whereas a Scene can offer multiple activities.
+
+Components:
+
+ Driver ->  A Scene Driver orchestrates the activities and listens to the interactor.
+
+ UiScene -> User interface implemetation/representation in the client.
+
+ State -> Represents the current modelled data available to the client.
+
+ Activity -> It performa a bunch of task in order to accomplish a goal for the client.
+
+ Interactor -> Provide means to the client send messages to the application and for the client to get the result of these.
+
+ Stores -> They are State managers.
+
+ StateStreams -> They are observable, which allows the client to be notified and have access to the application state.
+
+ Interactions -> They are predefined events that the application recognizes.
+

@@ -1,0 +1,36 @@
+name: webian
+description: A new Flutter package.
+version: 0.0.1
+
+environment:
+    sdk: ">=2.10.0 <3.0.0"
+
+dependencies:
+    flutter:
+        sdk: flutter
+
+    rxdart: ^0.26.0
+
+    flutter_riverpod: ^0.12.4
+
+    equatable: 1.2.6
+
+    dart_extras:
+        git:
+            url: https://github.com/webian-dart/dart_extras.git
+
+dev_dependencies:
+    flutter_test:
+        sdk: flutter
+
+    test: any
+
+    mockito: 4.1.1
+
+    fake_async: 1.2.0
+
+    clock: 1.1.0
+
+dependency_overrides:
+    dart_extras:
+        path: ../dart_extras

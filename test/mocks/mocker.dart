@@ -1,0 +1,4 @@
+
+class Mocker {
+    Mocker._();
+}
