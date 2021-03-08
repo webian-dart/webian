@@ -9,7 +9,7 @@ class Interactor {
   bool _isNotDisposed = true;
   final PublishSubject<Event> _inputBus;
 
-  Interactor([PublishSubject<Event> inputBus])
+  Interactor([PublishSubject<Event>? inputBus])
       : this._inputBus = inputBus ?? PublishSubject<Event>();
 
   emit(Event event) {

@@ -24,26 +24,18 @@ class AuthenticatedUser extends Cloneable {
   final bool isEmailVerified;
 
   AuthenticatedUser({
-    String displayName,
-    String photoUrl,
-    String email,
-    String phoneNumber,
-    DateTime creationTime,
-    DateTime lastSignInTime,
-    bool isAnonymous,
-    bool isEmailVerified,
-    String providerId,
-    String providerUserId,
-  })  : this.displayName = displayName ?? "",
-        this.photoUrl = photoUrl ?? "",
-        this.email = email ?? "",
-        this.phoneNumber = phoneNumber ?? "",
-        this.creationTime = creationTime ?? emptyDateTime,
-        this.lastSignInTime = lastSignInTime ?? emptyDateTime,
-        this.isAnonymous = isAnonymous ?? false,
-        this.isEmailVerified = isEmailVerified ?? false,
-        this.providerId = providerId ?? "",
-        this.providerUserId = providerUserId ?? "";
+    this.displayName = "",
+    this.photoUrl = "",
+    this.email = "",
+    this.phoneNumber = "",
+    this.isAnonymous = false,
+    this.isEmailVerified = false,
+    this.providerId = "",
+    this.providerUserId = "",
+    DateTime? creationTime,
+    DateTime? lastSignInTime,
+  })  : this.creationTime = creationTime ?? emptyDateTime,
+        this.lastSignInTime = lastSignInTime ?? emptyDateTime;
 
   @override
   AuthenticatedUser clone() {
