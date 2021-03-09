@@ -270,6 +270,19 @@ class AppWidget extends StatefulWidget {
 
 ```
 
+On the main app Entry file, we create the App. Then we use a factory to wrap our main widget (**AppWidget**) with the ProviderScope, 
+and we use its 'overrides' to plugin our App scope to the ProviderScope widget. In this manner, the Core layer States, references to each are accessible
+through our shared Providers which in turn are the product of the Stores(), is now accessible to the different UI components.
+
+In this manner, since the UI only has access to the State Providers, we keep the core of the App separate from the UI. 
+The UI send events, that can carry UI data, to the Core; the core in turn modifies the State which the UI is listening to;
+
+The Core should avoid to be too UI centric. What we mean is, it does know of buttons or screens. Instead, it listens 
+to the User's Intents through their interactions and updates State. Of course, this is a goal not a hard requirement.
+We might want to have some UI state be persitent. But by avoiding it on the Core layer, its features are more likely to
+be decoupled from the UI and allow the UI to be polyform. That is, on a mobile screen, features 'A' and 'B' might be visual available, wheres 
+on a Table we also get 'A', 'B' and 'C', and on web 'A', 'B', 'C' and 'D'. 
+
 
 
 ## Flutter Getting Started
