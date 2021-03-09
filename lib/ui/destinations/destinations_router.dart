@@ -15,14 +15,15 @@ class DestinationsRouter {
   }
 
   _getSceneToWrapInPageRoute(RouteSettings settings) {
-    var builder = _sceneBuilder.toWrapRoutesBuilders[settings.name] ??
-        _sceneBuilder.toWrapRoutesBuilders[_sceneBuilder.defaultDestination];
+    WidgetBuilder builder = _sceneBuilder.toWrapRoutesBuilders[settings.name] ??
+        _sceneBuilder.toWrapRoutesBuilders[_sceneBuilder.defaultDestination] ??
+        (BuildContext context) => Container();
     return MaterialPageRoute(settings: settings, builder: builder);
   }
 
-  _isACustomPageRoute(RouteSettings settings) =>
+  bool _isACustomPageRoute(RouteSettings settings) =>
       _sceneBuilder.customPagesRouteBuilders.containsKey(settings.name);
 
   _getCustomPageRoute(RouteSettings settings) =>
-      _sceneBuilder.customPagesRouteBuilders[settings.name](settings);
+      _sceneBuilder.customPagesRouteBuilders[settings.name]?.call(settings);
 }

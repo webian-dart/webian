@@ -12,23 +12,23 @@ abstract class RoutingDelegate extends RouterDelegate<Destination>
 
   final DestinationPagesCache cache = DestinationPagesCache();
   Map<Destination, PageBuilder> _routes;
-  final Builder underlayWidget;
-  final Builder overlayWidget;
+  final Builder? underlayWidget;
+  final Builder? overlayWidget;
 
   @override
   final GlobalKey<NavigatorState> navigatorKey;
 
   RoutingDelegate({
-    Key key,
-    @required Map<Destination, PageBuilder> routes,
+    GlobalKey<NavigatorState>? key,
+    Map<Destination, PageBuilder>? routes,
     this.underlayWidget,
     this.overlayWidget,
   })  : this._routes = routes ?? Map<Destination, PageBuilder>(),
         navigatorKey = key ?? GlobalKey<NavigatorState>() {
     cache.pages = (() {
-      final dest = _extractStartDestination(routes);
-      assert(dest?.isToSomewhere == true);
-      final page = routes[dest](dest);
+      final dest = _extractStartDestination(_routes);
+      assert(dest.isToSomewhere == true);
+      final page = _routes[dest]?.call(dest);
       assert(page is DestinationPage);
       return List<DestinationPage>.from([page], growable: false);
     }());
@@ -45,9 +45,9 @@ abstract class RoutingDelegate extends RouterDelegate<Destination>
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        if (underlayWidget != null) underlayWidget,
+        if (underlayWidget != null) underlayWidget as Widget,
         _navigator(context),
-        if (overlayWidget != null) overlayWidget,
+        if (overlayWidget != null) overlayWidget as Widget,
       ],
     );
   }
@@ -59,8 +59,8 @@ abstract class RoutingDelegate extends RouterDelegate<Destination>
       onPopPage: (route, result) {
         final page = cache.pages.lastWhere(
             (it) => it.destination.uri.path == route.settings.name,
-            orElse: () => null);
-        if (!page.destination.isHomeDestination) {
+            orElse: () => NowhereDestinationPage());
+        if (page.isToNowhere || !page.destination.isHomeDestination) {
           return route.didPop(result);
         } else {
           return false;
@@ -90,8 +90,8 @@ abstract class RoutingDelegate extends RouterDelegate<Destination>
   }
 
   static Destination _extractStartDestination(
-          Map<Destination, PageBuilder> routes) =>
-      routes?.keys?.firstWhere(
+      Map<Destination, PageBuilder> routes) =>
+      routes.keys.firstWhere(
         (it) => it.uri.path == Destination.START_PATH,
         orElse: () => Destination.nowhere,
       );
@@ -113,7 +113,7 @@ abstract class RoutingDelegate extends RouterDelegate<Destination>
   }
 
   DestinationPage makeNewPageFor(Destination destination) =>
-      _routes[destination].call(destination);
+      _routes[destination]?.call(destination) ?? NowhereDestinationPage();
 }
 
 class DestinationPagesCache {

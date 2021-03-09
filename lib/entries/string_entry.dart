@@ -7,7 +7,7 @@ class StringEntry extends Entry<String> {
   @override
   final Validation validation;
 
-  StringEntry({String value, Validation validation})
+  StringEntry({String? value = "", Validation? validation})
       : this.value = value ?? "",
         this.validation = validation ?? Validation();
 

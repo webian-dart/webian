@@ -7,7 +7,7 @@ class Validation implements Cloneable {
   final bool isValid;
   final String validationMessage;
 
-  Validation({EntryStatus status, bool isValid, String validationMessage})
+  Validation({EntryStatus? status, bool? isValid, String? validationMessage})
       : this.status = status ?? EntryStatus.EMPTY,
         this.isValid = isValid ?? false,
         this.validationMessage =

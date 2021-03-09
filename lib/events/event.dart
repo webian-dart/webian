@@ -8,7 +8,7 @@ class Event extends Equatable {
   final Symbol symbol;
   final Data data;
 
-  Event(this.symbol, {Data data}) : this.data = data ?? Data.empty;
+  Event(this.symbol, {Data? data}) : this.data = data ?? Data.empty;
 
   @override
   List<Object> get props => [symbol];

@@ -1,5 +1,5 @@
 import 'package:dart_extras/dart_extras.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/widgets.dart';
 
 enum Presentation { PRESENTED, PENDING, UNKNOWN }
 
@@ -18,11 +18,11 @@ class Message extends Cloneable {
 
   Message(
     this.symbol, {
-    String body,
-    String title,
-    Presentation presentation,
-    Resolution resolution,
-    UniqueKey uniqueKey,
+    String? body,
+    String? title,
+    Presentation? presentation,
+    Resolution? resolution,
+    UniqueKey? uniqueKey,
   })  : this.body = body ?? "",
         this.title = title ?? "",
         this.presentation = presentation ?? Presentation.UNKNOWN,
@@ -30,7 +30,7 @@ class Message extends Cloneable {
         this.key = uniqueKey ?? UniqueKey();
 
   @override
-  Message clone({Presentation presentation, Resolution resolution}) =>
+  Message clone({Presentation? presentation, Resolution? resolution}) =>
       Message(this.symbol,
           resolution: resolution ?? this.resolution,
           presentation: presentation ?? this.presentation,
@@ -53,6 +53,6 @@ class CallToActionQuery<T> {
   final Symbol symbol;
   final ResultOf<T> result;
 
-  CallToActionQuery(this.symbol, {ResultOf<T> result})
+  CallToActionQuery(this.symbol, {ResultOf<T>? result})
       : result = result ?? ResultOf.empty(isPending: true);
 }

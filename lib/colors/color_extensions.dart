@@ -2,6 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'package:dart_extras/dart_extras.dart';
 
 import 'color_shade.dart';
 
@@ -37,9 +38,9 @@ extension ColorExtension on Color {
     final darkShades = <Color>[];
 
     for (final shade in ColorShades.shades) {
-      if (shade < shades[minShade]) continue;
+      if (shade.value < minShade.value) continue;
 
-      final colorShade = materialColor[shade];
+      final colorShade = materialColor[shade.value];
       if (colorShade?.estimateBrightnessForColor() == Brightness.dark) {
         darkShades.add(colorShade!);
       }
@@ -47,7 +48,7 @@ extension ColorExtension on Color {
 
     return darkShades.length > 0
         ? darkShades
-        : materialColor[ColorShades.darkest.value].either(it => [it], or: () => []);
+        : materialColor[ColorShades.darkest.value].either((it) => [it], () => []);
   }
 
   MaterialColor getMaterialColor() {

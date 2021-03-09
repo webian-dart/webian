@@ -7,7 +7,7 @@ import '../mocks/test_activity.dart';
 import '../mocks/test_application.dart';
 
 void main() {
-  TestApplication application;
+  late TestApplication application;
 
   setUp(() {
     application = TestApplication();
@@ -19,7 +19,7 @@ void main() {
         "that matches the event's symbol", () {
       final factory = ActivitiesFactory();
       final activity = TestActivity(application);
-      factory.map[TestActivity.symbol] = (application, {Event event}) {
+      factory.map[TestActivity.symbol] = (application, {Event? event}) {
         return activity;
       };
       final event = Event(TestActivity.symbol);
@@ -31,7 +31,7 @@ void main() {
         "return the do nothing activity when the symbol is for a "
         "activity that does not have a 'registered' activity", () {
       final factory = ActivitiesFactory();
-      factory.map[TestActivity.symbol] = (application, {Event event}) {
+      factory.map[TestActivity.symbol] = (application, {Event? event}) {
         return TestActivity(application);
       };
       final event = Event(Symbol("a_random_symbol"));

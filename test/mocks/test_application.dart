@@ -1,23 +1,27 @@
+import 'package:dart_extras/src/results/result.dart';
+import 'package:riverpod/src/framework.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:webian/activities/activity.dart';
-import 'package:webian/application/application.dart';
-import 'package:webian/application/old_interactor.dart';
+import 'package:webian/application/app_driver.dart';
 import 'package:webian/events/event.dart';
-import 'package:webian/services/services.dart';
-import 'package:webian/stores/stores.dart';
 
-class TestApplication extends Application {
+class TestApplication extends ApplicationDriver {
+  final PublishSubject<Event> appBus;
+  final PublishSubject<Event> inputBus;
+  final ProviderContainer scope;
+
   TestApplication(
-      {OldInteractor interactor,
-      Stores stores,
-      PublishSubject<Event> channel,
-      Services services})
-      : super(
-            interactor: interactor,
-            stores: stores,
-            channel: channel,
-            services: services);
+      {PublishSubject<Event>? appBus,
+      PublishSubject<Event>? inputBus,
+      ProviderContainer? scope})
+      : this.appBus = appBus ?? PublishSubject<Event>(),
+        this.inputBus = inputBus ?? PublishSubject<Event>(),
+        this.scope = scope ?? ProviderContainer(),
+        super();
 
   @override
-  done(Activity activity) {}
+  void close() {
+    appBus.close();
+    inputBus.close();
+  }
 }
