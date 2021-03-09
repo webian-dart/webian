@@ -81,7 +81,7 @@
     },
     {
       "name": "dart_extras",
-      "rootUri": "../../dart_extras",
+      "rootUri": "file:///C:/Users/kali/AppData/Local/Pub/Cache/git/dart_extras-ce5efdc3b632cfc5e822291cfaf5129ce6ff32fd/",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -386,7 +386,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-03-08T16:33:31.485094Z",
+  "generated": "2021-03-09T11:35:08.754487Z",
   "generator": "pub",
   "generatorVersion": "2.12.0"
 }
