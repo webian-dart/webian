@@ -1,6 +1,6 @@
 # webian
 
-##A Architectural Framework for Flutter
+## A Architectural Framework for Flutter
 
 ### Components:
 
@@ -42,13 +42,13 @@ class States {
   final Provider<PermissionsState> permissions;
 
   States._()
-      : this.initialization = Provider<InitializationState>((ref) {
+      : initialization = Provider<InitializationState>((ref) {
           return ref.watch(Stores().initialization.state).clone();
         }),
-        this.permissions = Provider<PermissionsState>((ref) {
+        permissions = Provider<PermissionsState>((ref) {
           return ref.watch(Stores().permissions.state).clone();
         }),
-        this.navigation = Provider<NavigationState>((ref) {
+        navigation = Provider<NavigationState>((ref) {
           return ref.watch(Stores().navigation.state).clone();
         });
 
@@ -116,11 +116,35 @@ we recommend you learn [Riverpod](https://pub.dev/packages/riverpod).
 }
 
   ```
+  The Use Cases have access to the Stores and they interact with using its public interface. 
+  For example, we could have singleton class where we keep all the references to our Stores using 
+  [Riverpod](https://pub.dev/packages/riverpod). Again, access to these is restricted to the Business Layer.
+  
+  ```dart
+  class Stores {
+  final StateNotifierProvider<NavigationStore> navigation;
+  final StateNotifierProvider<InitializationStore> initialization;
+  final StateNotifierProvider<PermissionsStore> permissions;
 
- Interactions -> They are predefined events that the application recognizes.
+  Stores._()
+      :  navigation = StateNotifierProvider<NavigationStore>((ref) =>
+            NavigationStore(initialState: NavigationState(destinations: [Destinations.start]))),
+                
+        permissions = StateNotifierProvider<PermissionsStore>(
+            (ref) => PermissionsStore(initialState: PermissionsState())),
+            
+        initialization = StateNotifierProvider<InitializationStore>(
+            (ref) => InitializationStore(initialState: InitializationState()));
+       
 
+  factory Stores() => _instance;
 
-  #### **Interactor** -> Provide means to the client send messages to the application and for the client to get the result of these.
+  static final Stores _instance = Stores._();
+}
+
+  ```
+
+## 
 
 ## Flutter Getting Started
 
