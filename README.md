@@ -37,18 +37,12 @@
  
  ```dart
 class States {
-  final Provider<AppState> app;
   final Provider<InitializationState> initialization;
   final Provider<NavigationState> navigation;
   final Provider<PermissionsState> permissions;
-  final Provider<TranslationsState> translations;
-  final Provider<AccessibilityState> accessibility;
 
   States._()
-      : this.app = Provider<AppState>((ref) {
-          return ref.watch(Stores().app.state).clone();
-        }),
-        this.initialization = Provider<InitializationState>((ref) {
+      : this.initialization = Provider<InitializationState>((ref) {
           return ref.watch(Stores().initialization.state).clone();
         }),
         this.permissions = Provider<PermissionsState>((ref) {
@@ -56,19 +50,25 @@ class States {
         }),
         this.navigation = Provider<NavigationState>((ref) {
           return ref.watch(Stores().navigation.state).clone();
-        }),
-        this.translations = Provider<TranslationsState>((ref) {
-          return ref.watch(Stores().translations.state).clone();
-        }),
-        this.accessibility = Provider<AccessibilityState>((ref) {
-          return ref.watch(Stores().accessibility.state).clone();
         });
 
   factory States() => _instance;
 
   static final States _instance = States._();
 }
- ```
+
+```
+The above class is exported from the Core package so that the UI can observer it. 
+Now, in the example we put it inside of States() class. but the important bits are:
+
+```dart
+Provider<NavigationState>((ref) {
+          return ref.watch(Stores().navigation.state).clone();
+ });
+```
+
+What is that? That is our Global factory (we recommend you check [Riverpod](https://pub.dev/packages/riverpod)
+
 
   #### **Stores**
   
