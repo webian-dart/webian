@@ -166,6 +166,32 @@ class App implements ApplicationDriver, ApplicationInterfacer {
 }
 ```
 
+Our App implements 2 interfaces:
+
+```dart
+import 'package:flutter_riverpod/all.dart';
+import 'package:mobiplay/events/event.dart';
+import 'package:rxdart/rxdart.dart';
+
+abstract class ApplicationDriver {
+  PublishSubject<Event> get appBus;
+  PublishSubject<Event> get inputBus;
+  ProviderContainer get provider;
+}
+
+```
+
+```dart
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+
+import 'interactor.dart';
+
+abstract class ApplicationInterfacer {
+  Interactor get interactor;
+  ProviderContainer get scope;
+}
+```
+
 ## Flutter Getting Started
 
 For help getting started with Flutter, view our online
