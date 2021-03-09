@@ -1,9 +1,8 @@
 # webian
 
-## An Architectural Framework for Flutter
+## A Polyformic Architectural Framework for Flutter
 
-This is a Flux and Clean Architecture inspired architecture.
-
+This is a Flux and Clean Architecture inspired architecture, for **Polyformic UX**
 
 
 
