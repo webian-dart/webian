@@ -192,6 +192,22 @@ abstract class ApplicationInterfacer {
 }
 ```
 
+```dart
+class Interactor {
+  final PublishSubject<Event> _inputBus;
+
+  Interactor([PublishSubject<Event>? inputBus]);
+
+  emit(Event event);
+
+  emitFor(Symbol symbol);
+
+  StreamSubscription subscribe(Function(Event) onEvent);
+  
+  watch(Watcher<Event> watcher);
+}
+```
+
 ## Flutter Getting Started
 
 For help getting started with Flutter, view our online
