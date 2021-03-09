@@ -31,7 +31,7 @@
   }
 
  ```
- A simple example of how we can achieve this using riverpod. Riverpod allows us to create 
+ A simple example of how we can achieve this using [Riverpod](https://pub.dev/packages/riverpod). Riverpod allows us to create 
  a global factory of factories that instantiate a new factry for a given scope/context. 
  It is a form of Dependency injection that avoid the Service Locator pattern issues.
  
