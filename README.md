@@ -49,6 +49,21 @@
  #### **State**
  
  They are observable, which allows the client to be notified and have access to the application state.
+ 
+ ```dart
+ class InitializationState implements Cloneable {
+  final bool initialized;
+  final Fault fault;
+
+  InitializationState({this.initialized = false, Fault fault})
+      : his.fault = fault ?? Fault.Empty;
+
+  @override
+  clone({bool initialized, Fault fault}) => InitializationState(
+      initialized: initialized ?? this.initialized, fault: fault ?? this.fault);
+  }
+
+ ```
 
  Interactions -> They are predefined events that the application recognizes.
 
