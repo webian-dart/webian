@@ -67,8 +67,8 @@ final initializationProvider = Provider<InitializationState>((ref) {
         });
 ```
 
-What is that? That is our Global factory (we recommend you check 
-[Riverpod](https://pub.dev/packages/riverpod), or in Riverpod lingo the provider.
+What is that? That is our Global factory or in Riverpod lingo: the provider.
+(we recommend you check [Riverpod](https://pub.dev/packages/riverpod)
 For example:
 
 ```dart
