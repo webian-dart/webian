@@ -143,8 +143,28 @@ we recommend you learn [Riverpod](https://pub.dev/packages/riverpod).
 }
 
   ```
+ 
+## App
 
-## 
+```dart
+class App implements ApplicationDriver, ApplicationInterfacer {
+  Interactor _interactor;
+
+  @override
+  Interactor get interactor => _interactor;
+
+  ProviderContainer _scope;
+  @override
+  ProviderContainer get scope => _scope;
+
+  @override
+  final PublishSubject<Event> appBus;
+  @override
+  final PublishSubject<Event> inputBus;
+
+  //etc...
+}
+```
 
 ## Flutter Getting Started
 
