@@ -166,7 +166,13 @@ class App implements ApplicationDriver, ApplicationInterfacer {
 }
 ```
 
-Our App implements 2 interfaces:
+Our App implements two interfaces. The first is ApplicationDriver, this interface
+is for the Business Layer. It is the reference that Activities and other components
+of the app get, it provides the Application Business Layer context. Hence, you
+will find the appBus (internal to business layer) and the inputBus how the core
+the listens to events in the 'outside world'. Finally, provider is a [Riverpod](https://pub.dev/packages/riverpod)
+component, it is the scope where all the Stores and States providers exist, it is like a Service Locator (please
+see Stores and State above).
 
 ```dart
 import 'package:flutter_riverpod/all.dart';
