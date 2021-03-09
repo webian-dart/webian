@@ -166,10 +166,10 @@ class App implements ApplicationDriver, ApplicationInterfacer {
 }
 ```
 
-Our App implements two interfaces. The first is ApplicationDriver, this interface
+Our App implements two interfaces. The first is **ApplicationDriver**, this interface
 is for the Business Layer. It is the reference that Activities and other components
 of the app get, it provides the Application Business Layer context. Hence, you
-will find the appBus (internal to business layer) and the inputBus how the core
+will find the **appBus** (internal to business layer) and the inputBus how the core
 the listens to events in the 'outside world'. Finally, provider is a [Riverpod](https://pub.dev/packages/riverpod)
 component, it is the scope where all the Stores and States providers exist, it is like a Service Locator (please
 see Stores and State above).
@@ -186,6 +186,27 @@ abstract class ApplicationDriver {
 }
 
 ```
+
+The other interface App implements is **ApplicationInterfacer**. 
+This is the interface that will be made available to the outer layers;
+like the UI layer. It has an **interactor** and **scope**. 
+
+Now, the **scope** is the same as the **provider** on the **ApplicationDriver**.
+At this point, you might think: oh wait! But you said the Store are accessible
+through the **ProviderContainer**, does that mean the UI can access them? -
+No, unless you made the reference to the Store provider available outside the core
+package, you shouldn't do. Only that way you can reference them in scope to find them.
+
+The **ProviderAllows** allows the rest of the app to have access to the app scope so that
+it can get the different State usig the references (above in the **States** example they
+were made accessible in the **States()** singleton.
+
+The **Interactor** is just a wrapper for our inputBus. The Ui, for example, used
+this to send events to the Business Layer; there different Activities handle events
+as they see fit. Potentially, this causes subsequent State change that the UI listens to.
+Say, the user wants to "sign out", the UI uses the Interactor to tell the Core.
+Some Activity responsible for this, catches the event updates the app state and the UI
+then updates when it sees those state changes; etc.
 
 ```dart
 import 'package:flutter_riverpod/flutter_riverpod.dart';
