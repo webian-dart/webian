@@ -80,7 +80,7 @@ class Example extends ConsumerWidget {
   }
 }
 ```
-What is happening here? Our consure widget has Scope, if initializationProvider already exists 
+What is happening here? Our consumer widget has Scope, if initializationProvider already exists 
 in that scope, then get me that instance, if not create us a new instance. So, in this way we 
 can have a global initializationState but we can also override it in nested scopes. In anyway,
 we recommend you learn [Riverpod](https://pub.dev/packages/riverpod). 
