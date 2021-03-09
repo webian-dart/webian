@@ -239,6 +239,39 @@ class Interactor {
 }
 ```
 
+### Wiring UI and Core packages
+
+On the Application Package (the package that has the Android, iOs, etc, directories)
+
+```dart
+final app = App(isInDebugMode: true);
+void main() => runApp(AppWidget.make(app));
+```
+
+The entry point for the UI:
+
+
+```dart
+class AppWidget extends StatefulWidget {
+  final App app;
+
+  AppWidget(this.app);
+
+  @override
+  _AppWidgetState createState() => _AppWidgetState();
+
+  static ProviderScope make(App app) {
+    return ProviderScope(
+      overrides: [appInterfacer.overrideWithValue(app)],
+      child: AppWidget(app),
+    );
+  }
+}
+
+```
+
+
+
 ## Flutter Getting Started
 
 For help getting started with Flutter, view our online
