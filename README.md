@@ -62,13 +62,28 @@ The above class is exported from the Core package so that the UI can observer it
 Now, in the example we put it inside of States() class. but the important bits are:
 
 ```dart
-Provider<NavigationState>((ref) {
-          return ref.watch(Stores().navigation.state).clone();
- });
+final initializationProvider = Provider<InitializationState>((ref) {
+          return ref.watch(Stores().initialization.state).clone();
+        });
 ```
 
-What is that? That is our Global factory (we recommend you check [Riverpod](https://pub.dev/packages/riverpod)
+What is that? That is our Global factory (we recommend you check 
+[Riverpod](https://pub.dev/packages/riverpod), or in Riverpod lingo the provider.
+For example:
 
+```dart
+class Example extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, ScopedReader watch) {
+    final count = watch(initializationProvider.state);
+    return Text(count.toString());
+  }
+}
+```
+What is happening here? Our consure widget has Scope, if initializationProvider already exists 
+in that scope, then get me that instance, if not create us a new instance. So, in this way we 
+can have a global initializationState but we can also override it in nested scopes. In anyway,
+we recommend you learn [Riverpod](https://pub.dev/packages/riverpod). 
 
   #### **Stores**
   
