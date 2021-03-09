@@ -4,7 +4,7 @@
 
 This is a Flux and Clean Architecture inspired architecture, for **Polyformic UX**
 
-
+> The Core should avoid to be too UI centric. What we mean is, it does know of buttons or screens. Instead, it listens to the User's Intents through their interactions and updates State. Of course, this is a goal not a hard requirement. We might want to have some UI state be persitent. But by avoiding it on the Core layer, its features are more likely to be decoupled from the UI and allow the UI to be polyform. That is, on a mobile screen, features 'A' and 'B' might be visual available, wheres on a Table we also get 'A', 'B' and 'C', and on web 'A', 'B', 'C' and 'D'.
 
 ### Components:
 
