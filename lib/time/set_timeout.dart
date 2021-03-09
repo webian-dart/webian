@@ -1,11 +1,10 @@
 
-
 import 'dart:async';
 
 class SetTimeout {
     Function _action;
     Duration _duration;
-    Timer _timer;
+    Timer? _timer;
     SetTimeout(this._duration, this._action);
     
     run() async {
@@ -13,7 +12,7 @@ class SetTimeout {
     }
     
     _onTimeout() {
-        _timer.cancel();
+        _timer?.cancel();
         _action();
     }
 }

@@ -5,7 +5,8 @@ abstract class AppNavigationState implements Cloneable {
   final List<Destination> destinationsStack;
   Destination get currentDestination => destinationsStack.last;
 
-  AppNavigationState({List<Destination> destinations, List<Fault> faults})
+  AppNavigationState({
+    required List<Destination> destinations})
       : assert(destinations.isNotEmpty),
         this.destinationsStack = destinations;
 

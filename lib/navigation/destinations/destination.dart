@@ -11,7 +11,7 @@ class Destination {
 
   const Destination(this.uri);
 
-  factory Destination.make(String host, String path, {String fragment}) =>
+  factory Destination.make(String host, String path, {String? fragment}) =>
       Destination(Uri(
         scheme: APP_SCHEME,
         host: host,

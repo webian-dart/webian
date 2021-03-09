@@ -15,8 +15,6 @@ abstract class DestinationsSceneBuilder {
   final Map<String, Function> customPagesRouteBuilders;
 
   DestinationsSceneBuilder(
-      {@required Map<String, WidgetBuilder> toWrapRoutesBuilders,
-      @required Map<String, Function> customPagesRouteBuilders})
-      : this.toWrapRoutesBuilders = toWrapRoutesBuilders,
-        this.customPagesRouteBuilders = customPagesRouteBuilders;
+      {required this.toWrapRoutesBuilders,
+      required this.customPagesRouteBuilders});
 }

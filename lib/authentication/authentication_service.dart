@@ -1,9 +1,8 @@
 import 'package:dart_extras/dart_extras.dart';
 
 import '../authentication/authenticated_user.dart';
-import '../services/service.dart';
 
-abstract class AuthenticationService implements Service {
+abstract class AuthenticationService {
   static final Symbol symbol = Symbol("authentication-service");
   AuthenticationService();
   Future<ResultOf<AuthenticatedUser>> autoSignIn();

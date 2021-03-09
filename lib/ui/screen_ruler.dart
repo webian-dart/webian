@@ -64,7 +64,7 @@ class ScreenRuler {
 }
 
 extension ScreenRulerDoubleExtensions on double {
-  double percentageOf({double dimension, double min = 0, double max = -1}) {
+  double percentageOf({double dimension = 0, double min = 0, double max = -1}) {
     if (max != -1 && min > max) return max;
     if (dimension < 1) return 1;
     var pc = this < 1 && this > 0.0001 ? this : 1;

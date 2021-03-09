@@ -7,21 +7,21 @@ class TestWatcher<T extends Event> extends Watcher<T> {
   dynamic error;
   bool isDone = false;
 
-  TestWatcher() {
-    this.onEventAction = onEvent;
-    this.onErrorAction = onError;
-    this.onDoneAction = onDone;
+  TestWatcher(): super() {
+    this.onEvent = onEventAction;
+    this.onError= onErrorAction;
+    this.onDone = onDoneAction;
   }
 
-  void onEvent(T event) {
+  void onEventAction(T event) {
     events.add(event);
   }
 
-  void onError(dynamic error) {
+  void onErrorAction(dynamic error) {
     this.error = error;
   }
 
-  void onDone() {
+  void onDoneAction() {
     this.isDone = true;
     runOnDone();
   }
