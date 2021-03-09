@@ -1,9 +1,13 @@
 # webian
 
-## A Architectural Framework for Flutter
+## An Architectural Framework for Flutter
+
+This is a Flux and Clean Architecture inspired architecture.
+
+
+
 
 ### Components:
-
 
   #### **Activity**
  
