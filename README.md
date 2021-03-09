@@ -13,6 +13,62 @@
   that need to happen. However, important to note that Activities have no visual
   representation, they are not UI components, but rather Business Layer features.
 
+ #### **State**
+ 
+ These are observable components, which allows the client to be notified and have access to the application state.
+ 
+ ```dart
+ class InitializationState implements Cloneable {
+  final bool initialized;
+  final Fault fault;
+
+  InitializationState({this.initialized = false, Fault fault})
+      : his.fault = fault ?? Fault.Empty;
+
+  @override
+  clone({bool initialized, Fault fault}) => InitializationState(
+      initialized: initialized ?? this.initialized, fault: fault ?? this.fault);
+  }
+
+ ```
+ A simple example of how we can achieve this using riverpod. Riverpod allows us to create 
+ a global factory of factories that instantiate a new factry for a given scope/context. 
+ It is a form of Dependency injection that avoid the Service Locator pattern issues.
+ 
+ ```dart
+class States {
+  final Provider<AppState> app;
+  final Provider<InitializationState> initialization;
+  final Provider<NavigationState> navigation;
+  final Provider<PermissionsState> permissions;
+  final Provider<TranslationsState> translations;
+  final Provider<AccessibilityState> accessibility;
+
+  States._()
+      : this.app = Provider<AppState>((ref) {
+          return ref.watch(Stores().app.state).clone();
+        }),
+        this.initialization = Provider<InitializationState>((ref) {
+          return ref.watch(Stores().initialization.state).clone();
+        }),
+        this.permissions = Provider<PermissionsState>((ref) {
+          return ref.watch(Stores().permissions.state).clone();
+        }),
+        this.navigation = Provider<NavigationState>((ref) {
+          return ref.watch(Stores().navigation.state).clone();
+        }),
+        this.translations = Provider<TranslationsState>((ref) {
+          return ref.watch(Stores().translations.state).clone();
+        }),
+        this.accessibility = Provider<AccessibilityState>((ref) {
+          return ref.watch(Stores().accessibility.state).clone();
+        });
+
+  factory States() => _instance;
+
+  static final States _instance = States._();
+}
+ ```
 
   #### **Stores**
   
@@ -45,25 +101,6 @@
 }
 
   ```
-
- #### **State**
- 
- They are observable, which allows the client to be notified and have access to the application state.
- 
- ```dart
- class InitializationState implements Cloneable {
-  final bool initialized;
-  final Fault fault;
-
-  InitializationState({this.initialized = false, Fault fault})
-      : his.fault = fault ?? Fault.Empty;
-
-  @override
-  clone({bool initialized, Fault fault}) => InitializationState(
-      initialized: initialized ?? this.initialized, fault: fault ?? this.fault);
-  }
-
- ```
 
  Interactions -> They are predefined events that the application recognizes.
 
