@@ -11,7 +11,7 @@ dependencies:
 
     rxdart: ^0.26.0
 
-    flutter_riverpod: ^0.14.0
+    flutter_riverpod: ^0.14.0+1
 
     equatable: 2.0.0
 
