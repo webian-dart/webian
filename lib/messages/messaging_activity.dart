@@ -1,9 +1,13 @@
+import 'dart:async';
+
+import 'package:dart_extras/dart_extras.dart';
 import 'package:webian/activities/activity.dart';
-import 'package:webian/application/app_driver.dart';
+import 'package:webian/application/i_drive_application.dart';
 import 'package:webian/events/watcher.dart';
 import 'package:webian/messages/alerts/alert_message_event.dart';
 import 'package:webian/messages/message.dart';
 import 'package:webian/stores/application_store.dart';
+
 import 'alerts/alert_message.dart';
 import 'messaging_store.dart';
 
@@ -12,16 +16,16 @@ class MessagingActivity extends Activity {
   final ApplicationStore appStore;
 
   MessagingActivity(
-      {required ApplicationDriver app,
+      {required IDriveApplication app,
       required this.appStore,
       required this.messagingStore})
       : super(app);
 
   @override
-  Future<void> start() {
+  FutureOr<Result> start() {
     messagingStore.addListener(_checkForNewMessages);
     _startListeningToInteractions();
-    return Future.value();
+    return Result.success();
   }
 
   void _checkForNewMessages() {

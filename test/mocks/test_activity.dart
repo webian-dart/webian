@@ -1,17 +1,20 @@
+import 'dart:async';
+
+import 'package:dart_extras/dart_extras.dart';
 import 'package:webian/activities/activity.dart';
-import 'package:webian/application/app_driver.dart';
+import 'package:webian/application/i_drive_application.dart';
 
 class TestActivity extends Activity {
   static const Symbol symbol = const Symbol("test_activity");
 
   bool isRunning = false;
 
-  TestActivity(ApplicationDriver application) : super(application);
+  TestActivity(IDriveApplication application) : super(application);
 
   @override
-  Future start() {
+  FutureOr<Result> start() {
     isRunning = true;
-    return Future.value();
+    return Result.success();
   }
 
   @override

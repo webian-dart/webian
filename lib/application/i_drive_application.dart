@@ -1,4 +1,3 @@
-import 'package:dart_extras/dart_extras.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:webian/events/event.dart';
@@ -12,9 +11,10 @@ import 'package:webian/events/event.dart';
 /// accessible on any other layer. For example, the appBus
 /// is used by the Core Business layer to pass messages among
 /// different modules/activity/drivers on the Core layer.
-abstract class ApplicationDriver {
-  PublishSubject<Event> get appBus;
-  PublishSubject<Event> get inputBus;
+abstract class IDriveApplication {
+  PublishSubject<Event> get internalBus;
+  PublishSubject<Event> get inputsBus;
   ProviderContainer get scope;
+
   void close();
 }

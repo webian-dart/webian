@@ -1,6 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:webian/events/event.dart';
+
 import '../mocks/test_application.dart';
 
 void main() {
@@ -10,7 +11,7 @@ void main() {
       final appBus = PublishSubject<Event>();
       // ignore: close_sinks
       final inputBus = PublishSubject<Event>();
-      final app = TestApplication(appBus: appBus, inputBus: inputBus);
+      final app = TestApplication(internalBus: appBus, inputsBus: inputBus);
       app.close();
       expect(appBus.isClosed, true);
       expect(inputBus.isClosed, true);
